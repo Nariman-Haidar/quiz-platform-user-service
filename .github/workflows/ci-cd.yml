@@ -17,7 +17,7 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: Nrm1223#nrm
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           MYSQL_DATABASE: user_db
         ports:
           - 3307:3306
@@ -46,7 +46,7 @@ jobs:
 
       - name: Initialize MySQL schema
         run: |
-          mysql -h 127.0.0.1 -P 3307 -u root -proot user_db < init.sql
+          mysql -h 127.0.0.1 -P 3307 -u root -p${{ secrets.MYSQL_ROOT_PASSWORD }} user_db < init.sql
 
       - name: Build and test with Maven
         run: mvn -B clean package
@@ -65,3 +65,4 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+
