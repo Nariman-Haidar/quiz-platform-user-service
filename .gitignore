@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+/target/
+*.log
+.idea/
+*.iml
+.DS_Store
